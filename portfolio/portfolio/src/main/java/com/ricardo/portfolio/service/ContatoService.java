@@ -9,6 +9,9 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Validated
 @Service
 public class ContatoService {
@@ -26,4 +29,10 @@ public class ContatoService {
         return contatoMapper.toDTO(contatoRepository.save(contatoMapper.toEntity(contato)));
     }
 
+    public List<ContatoDTO> list() {
+        return contatoRepository.findAll()
+                .stream()
+                .map(contatoMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }

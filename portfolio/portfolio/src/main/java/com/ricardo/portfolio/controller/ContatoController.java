@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Validated
 @RestController
 @RequestMapping("/api/contato")
@@ -18,10 +20,15 @@ public class ContatoController {
         this.contatoService = contatoService;
     }
 
-    @PostMapping
+    @PostMapping("/inserir")
     @ResponseStatus(code = HttpStatus.CREATED)
     public ContatoDTO create(@RequestBody @Valid @NotNull ContatoDTO contato) {
         return contatoService.create(contato);
+    }
+
+    @GetMapping
+    public List<ContatoDTO> list() {
+        return contatoService.list();
     }
 
 
