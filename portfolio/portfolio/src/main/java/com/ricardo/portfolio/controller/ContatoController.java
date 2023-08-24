@@ -12,6 +12,7 @@ import java.util.List;
 
 @Validated
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/contato")
 public class ContatoController {
 
